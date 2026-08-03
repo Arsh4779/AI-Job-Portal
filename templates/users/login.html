@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="auth-page container">
+  <section class="auth-card">
+    <div class="auth-intro">
+      <span class="auth-icon"><i class="bi bi-stars"></i></span>
+      <h1>Welcome back</h1>
+      <p>Sign in to continue building your next career move.</p>
+    </div>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+      {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+      </div>
+      {% endfor %}
+      <button class="btn btn-primary w-100 auth-submit" type="submit">Sign in <i class="bi bi-arrow-right ms-1"></i></button>
+    </form>
+    <p class="auth-switch">New here? <a href="{% url 'register' %}">Create an account</a></p>
+  </section>
+</main>
+{% endblock %}

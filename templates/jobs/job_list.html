@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="jobs-page container">
+  <div class="jobs-heading"><p class="eyebrow">AI.CSV JOB DATASET</p><h1>Explore jobs</h1><p>Showing {{ showing_count }} of {{ total_matches }} matching jobs.</p></div>
+  <div class="row g-4">
+    <aside class="col-lg-3">
+      <form method="get" class="job-filter-card">
+        <h3>Filter jobs</h3>
+        <label for="id_q">Keyword</label><input id="id_q" class="form-control" name="q" value="{{ query }}" placeholder="Role or skill">
+        <label for="id_country">Country</label><select id="id_country" class="form-select" name="country"><option value="">All countries</option>{% for item in countries %}<option value="{{ item }}" {% if country == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select>
+        <label for="id_job_type">Work type</label><select id="id_job_type" class="form-select" name="job_type"><option value="">All work types</option>{% for item in job_types %}<option value="{{ item }}" {% if job_type == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select>
+        <label for="id_experience">Your experience</label><select id="id_experience" class="form-select" name="experience_years"><option value="">Any experience</option>{% for years in experience_options %}<option value="{{ years }}" {% if experience_years == years|stringformat:'d' %}selected{% endif %}>{{ years }} {% if years == 1 %}year{% else %}years{% endif %}</option>{% endfor %}</select><p class="filter-hint">Shows jobs whose minimum experience requirement you meet.</p>
+        <button class="btn btn-primary w-100" type="submit"><i class="bi bi-funnel me-1"></i> Apply filters</button>
+        <a class="btn btn-link w-100 mt-2" href="{% url 'job_list' %}">Clear filters</a>
+      </form>
+    </aside>
+    <div class="col-lg-9">
+      <div class="job-results-grid">
+        {% for job in jobs %}
+        <article class="csv-job-card">
+          <div class="csv-job-card-top"><span class="match-type">{{ job.job_type }}</span></div>
+          <h2>{{ job.title }}</h2><p class="company-name">{{ job.company }}</p>
+          <div class="job-meta"><span class="job-info-chip"><i class="bi bi-geo-alt"></i> {{ job.location }}, {{ job.country }}</span><span class="job-info-chip"><i class="bi bi-briefcase"></i> {{ job.experience }}</span><span class="job-info-chip salary-chip"><i class="bi bi-cash-stack"></i> {{ job.salary }}</span></div>
+          <p class="job-snippet">{{ job.description|truncatewords:36 }}</p>
+          <div class="job-card-footer"><span>{{ job.role }}</span><div class="job-card-actions">{% if user.is_authenticated %}<form method="post" action="{% url 'save_job' job.id %}">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn btn-save {% if job.is_saved %}is-saved{% endif %}" type="submit"><i class="bi {% if job.is_saved %}bi-bookmark-fill{% else %}bi-bookmark{% endif %}"></i> {% if job.is_saved %}Saved{% else %}Save{% endif %}</button></form>{% endif %}<a class="btn btn-primary btn-sm" href="{% url 'job_detail' job.id %}">View job <i class="bi bi-arrow-right"></i></a></div></div>
+        </article>
+        {% empty %}<div class="alert alert-info">No jobs match these filters. Try broadening your search.</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

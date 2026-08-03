@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="dashboard container">
+  <section class="dashboard-hero dashboard-hero-expanded">
+    <div class="dashboard-identity">
+      <span class="profile-initial">{{ user.username|first|upper }}</span>
+      <div>
+        <p class="eyebrow">CAREER DASHBOARD</p>
+        <h1>{{ user.username }}</h1>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+    <div class="dashboard-actions">
+      <a href="{% url 'recommender:home' %}" class="btn btn-light"><i class="bi bi-stars me-1"></i> View recommendations</a>
+      <a href="{% url 'cv_upload' %}" class="btn btn-outline-light"><i class="bi bi-arrow-repeat me-1"></i> Change CV</a>
+    </div>
+  </section>
+
+  <section class="dashboard-status row g-3 mb-4">
+    <div class="col-md-4"><div class="status-card"><span class="status-icon blue"><i class="bi bi-file-earmark-pdf"></i></span><div><small>Saved CV</small><strong>{% if user.profile.resume %}Ready for matching{% else %}Not uploaded{% endif %}</strong></div></div></div>
+    <div class="col-md-4"><div class="status-card"><span class="status-icon purple"><i class="bi bi-lightning-charge"></i></span><div><small>Skills identified</small><strong>{{ skills|length }} skills</strong></div></div></div>
+    <div class="col-md-4"><div class="status-card"><span class="status-icon green"><i class="bi bi-person-check"></i></span><div><small>Profile completion</small><strong>{{ profile_completion }}%</strong></div></div></div>
+  </section>
+
+  <section class="readiness-card mb-4">
+    <div class="readiness-score" style="--completion: {{ profile_completion }}"><span>{{ profile_completion }}<small>%</small></span></div>
+    <div class="readiness-copy"><p class="eyebrow">CAREER READINESS</p><h2>Your profile is {{ profile_completion }}% complete</h2><p>Complete CV details make recommendations more relevant.</p></div>
+    <div class="readiness-steps">
+      <span class="{% if user.profile.resume %}is-complete{% endif %}"><i class="bi {% if user.profile.resume %}bi-check2{% else %}bi-1{% endif %}"></i> Save CV</span>
+      <span class="{% if has_extracted_data %}is-complete{% endif %}"><i class="bi {% if has_extracted_data %}bi-check2{% else %}bi-2{% endif %}"></i> Extract data</span>
+      <span><i class="bi bi-3"></i> View jobs</span>
+    </div>
+  </section>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <section class="dashboard-card mb-4">
+        <div class="dashboard-card-head"><div><h2>Profile overview</h2><p class="card-subtitle">Details identified from your saved CV</p></div><span class="extracted-label"><i class="bi bi-magic"></i> CV extraction</span></div>
+        <div class="contact-grid">
+          <div><span>Email address</span><strong>{{ user.email|default:"Not available" }}</strong></div>
+          <div><span>Phone number</span><strong>{{ user.profile.phone|default:"Not found in CV" }}</strong></div>
+          <div><span>LinkedIn</span><strong><a href="{{ user.profile.linkedin_url }}" target="_blank" rel="noopener">View profile <i class="bi bi-box-arrow-up-right"></i></a></strong></div>
+          <div><span>GitHub</span><strong><a href="{{ user.profile.github_url }}" target="_blank" rel="noopener">View profile <i class="bi bi-box-arrow-up-right"></i></a></strong></div>
+        </div>
+        <div class="completion-bar mt-4"><span style="width: {{ profile_completion }}%"></span></div>
+        <p class="completion-copy">{{ completed_fields }} profile details completed.</p>
+      </section>
+
+      <section class="dashboard-card mb-4">
+        <h2><i class="bi bi-mortarboard me-2"></i>Education</h2>
+        <div class="education-list">
+          <div><span>Secondary school</span><strong>{{ user.profile.secondary_school }}</strong><em>{{ user.profile.secondary_marks }}</em></div>
+          <div><span>Higher secondary</span><strong>{{ user.profile.higher_secondary_school }}</strong><em>{{ user.profile.higher_secondary_marks }}</em></div>
+          <div><span>University / college</span><strong>{{ user.profile.university }}</strong><em>{{ user.profile.university_marks }}</em></div>
+        </div>
+      </section>
+
+      <section class="dashboard-card">
+        <h2><i class="bi bi-briefcase me-2"></i>Experience</h2>
+        {% if user.profile.experience %}<div class="experience-copy">{{ user.profile.experience|linebreaksbr }}</div>{% else %}<p class="empty-copy">No work-experience details could be identified. A text-based CV works best.</p>{% endif %}
+      </section>
+    </div>
+
+    <div class="col-lg-4">
+      <section class="dashboard-card skills-card mb-4">
+        <div class="dashboard-card-head"><div><h2><i class="bi bi-lightning-charge me-2"></i>Skills</h2><p class="card-subtitle">Recognised from your CV</p></div></div>
+        {% if skills %}<div class="skill-tags">{% for skill in skills %}<span>{{ skill }}</span>{% endfor %}</div>{% else %}<p class="empty-copy">No recognised skills yet.</p>{% endif %}
+      </section>
+
+      <section class="dashboard-card cv-card mb-4">
+        <div class="cv-card-icon"><i class="bi bi-file-earmark-text"></i></div>
+        <h2>Your saved CV</h2>
+        {% if user.profile.resume %}
+          <p class="cv-file-name"><i class="bi bi-check-circle-fill"></i> {{ cv_filename }}</p>
+          <p>Used when you click Recommendations.</p>
+          <div class="d-grid gap-2"><a href="{{ user.profile.resume.url }}" class="btn btn-outline-primary">View CV</a><a href="{% url 'cv_upload' %}" class="btn btn-link">Replace saved CV</a></div>
+        {% else %}
+          <p>Upload a CV to enable personalised matching.</p><a href="{% url 'cv_upload' %}" class="btn btn-primary w-100">Upload CV</a>
+        {% endif %}
+      </section>
+
+      <section class="dashboard-tip mt-4"><i class="bi bi-info-circle"></i><p><strong>Better matches:</strong> include skills, education, and recent work experience in a text-based PDF CV.</p></section>
+
+      <section class="dashboard-card action-card">
+        <i class="bi bi-arrow-clockwise"></i>
+        <h2>Need to refresh?</h2>
+        <p>Re-extract your profile data from the CV you have already saved.</p>
+        <form method="post" action="{% url 'refresh_cv_data' %}">{% csrf_token %}<button class="btn btn-primary w-100" type="submit">Refresh extracted data</button></form>
+      </section>
+
+      <section class="dashboard-card saved-jobs-card mt-4">
+        <div class="dashboard-card-head"><h2><i class="bi bi-bookmark-heart me-2"></i>Saved jobs</h2><a href="{% url 'job_list' %}">Browse</a></div>
+        {% for job in saved_jobs %}<a class="saved-job-row" href="{% url 'job_detail' job.id %}"><span>{{ job.company|first|upper }}</span><div><strong>{{ job.title }}</strong><small>{{ job.company }} · {{ job.location }}</small></div><i class="bi bi-chevron-right"></i></a>{% empty %}<p class="empty-copy">Save jobs from the Jobs page to see them here.</p>{% endfor %}
+      </section>
+    </div>
+  </div>
+  {% if user.profile.cv_extracted_at %}<p class="dashboard-updated">CV data last extracted {{ user.profile.cv_extracted_at|date:"M j, Y, g:i A" }}</p>{% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container mt-5 pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body p-4">
+          <h2>Jobs recommended for you</h2>
+          <p class="text-muted">Upload a text-based PDF resume to match it with jobs from the AI job dataset.</p>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Find matching jobs</button>
+          </form>
+        </div>
+      </div>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags|default:'info' }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% if recommendations %}
+        <h3 class="mb-3">Top matches</h3>
+        {% for recommendation in recommendations %}
+          <div class="card shadow-sm mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between gap-3">
+                <div>
+                  <h4>{{ recommendation.job.title }}</h4>
+                  <p class="mb-1 text-muted">{{ recommendation.job.company }} · {{ recommendation.job.location }}</p>
+                </div>
+                <span class="badge bg-success align-self-start">{{ recommendation.match }}% match</span>
+              </div>
+              <p class="mt-3">{{ recommendation.job.description|truncatewords:30 }}</p>
+              <p><strong>Skills:</strong> {{ recommendation.job.required_skills }}</p>
+              <p class="mb-0"><strong>Experience:</strong> {{ recommendation.job.experience }} · <strong>Type:</strong> {{ recommendation.job.job_type }}</p>
+              <p class="mb-0"><strong>Salary:</strong> {{ recommendation.job.salary }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% elif recommendations is not None %}
+        <div class="alert alert-info">No matching jobs were found in the AI dataset.</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container mt-5 pt-5">
+
+<div class="card shadow-lg">
+
+<div class="card-body p-5">
+
+<h2>{{ job.title }}</h2>
+
+<h4>{{ job.company }}</h4>
+
+<hr>
+
+<p>
+
+📍 {{ job.location }}
+
+</p>
+
+<p>
+
+💰 ₹{{ job.salary }}
+
+</p>
+
+<p>
+
+🧑‍💻 {{ job.experience }}
+
+</p>
+
+<p>
+
+🏢 {{ job.job_type }}
+
+</p>
+
+<hr>
+
+<h4>Description</h4>
+
+<p>{{ job.description }}</p>
+
+<hr>
+
+<h4>Required Skills</h4>
+
+<p>{{ job.required_skills }}</p>
+
+<a class="btn btn-success btn-lg">
+
+Apply Now
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
