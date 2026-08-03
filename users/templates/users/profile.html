@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2>{{ profile.user.username }}</h2>
+
+<hr>
+
+<p><strong>Email:</strong> {{ profile.user.email }}</p>
+
+<p><strong>Role:</strong> {{ profile.role }}</p>
+
+<p><strong>Phone:</strong> {{ profile.phone }}</p>
+
+<p><strong>Location:</strong> {{ profile.location }}</p>
+
+<img src="{{ profile.image.url }}" width="150" alt="Profile Image">
+
+</div>
+
+{% endblock %}
