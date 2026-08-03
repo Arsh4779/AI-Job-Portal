@@ -128,53 +128,53 @@ http://127.0.0.1:8000/
 ### 🏠 Home Page
 
 <p align="center">
-  <img src="screenshots/home1.png" width="45%" alt="Home Page 1">
-  <img src="screenshots/home2.png" width="45%" alt="Home Page 2">
+  <img src="Screenshots/home1.png" width="45%" alt="Home Page 1">
+  <img src="Screenshots/home2.png" width="45%" alt="Home Page 2">
 </p>
 
 <p align="center">
-  <img src="screenshots/home3.png" width="45%" alt="Home Page 3">
-  <img src="screenshots/home4.png" width="45%" alt="Home Page 4">
+  <img src="Screenshots/home3.png" width="45%" alt="Home Page 3">
+  <img src="Screenshots/home4.png" width="45%" alt="Home Page 4">
 </p>
 
 <p align="center">
-  <img src="screenshots/home5.png" width="45%" alt="Home Page 5">
+  <img src="Screenshots/home5.png" width="45%" alt="Home Page 5">
 </p>
 
 ### 🔐 Login & Registration
 
 <p align="center">
-  <img src="screenshots/login.png" width="80%" alt="Login Page">
+  <img src="Screenshots/login.png" width="80%" alt="Login Page">
 </p>
 
 ### 👤 User Dashboard
 
 <p align="center">
-  <img src="screenshots/dashboard.png" width="80%" alt="Dashboard">
+  <img src="Screenshots/dashboard.png" width="80%" alt="Dashboard">
 </p>
 
 ### 💼 Job Listings
 
 <p align="center">
-  <img src="screenshots/jobs.png" width="80%" alt="Job Listings">
+  <img src="Screenshots/jobs.png" width="80%" alt="Job Listings">
 </p>
 
 ### 📄 Job Details
 
 <p align="center">
-  <img src="screenshots/job_details.png" width="80%" alt="Job Details">
+  <img src="Screenshots/job_details.png" width="80%" alt="Job Details">
 </p>
 
 ### 📤 Resume Upload
 
 <p align="center">
-  <img src="screenshots/upload_resume.png" width="80%" alt="Resume Upload">
+  <img src="Screenshots/upload_resume.png" width="80%" alt="Resume Upload">
 </p>
 
 ### 🤖 AI Recommendations
 
 <p align="center">
-  <img src="screenshots/recommendations.png" width="80%" alt="AI Recommendations">
+  <img src="Screenshots/recommendation.png" width="80%" alt="AI Recommendations">
 </p>
 
 
