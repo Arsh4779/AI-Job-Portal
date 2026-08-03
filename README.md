@@ -1,20 +1,21 @@
-🚀 AI Job Portal – Intelligent Job Search & Recommendation System
+# 🚀 AI Job Portal – Intelligent Job Search & Recommendation System
 
 An intelligent **AI-powered Job Portal** built with **Django** that connects job seekers with relevant career opportunities through advanced search, resume analysis, and personalized job recommendations. The platform combines a modern web application with Machine Learning techniques to deliver a faster and smarter job search experience.
 
 Designed with scalability and user experience in mind, the system enables users to create profiles, explore thousands of job listings, upload resumes, and receive AI-driven recommendations based on their skills, qualifications, and experience.
 
+---
 
-✨ Key Features
+## ✨ Key Features
 
-👤 User Management
+### 👤 User Management
 
 * Secure User Registration & Login
 * Profile Management
 * Resume Upload (PDF)
 * Personalized Dashboard
 
-💼 Job Portal
+### 💼 Job Portal
 
 * Browse Available Jobs
 * Advanced Job Search
@@ -22,7 +23,7 @@ Designed with scalability and user experience in mind, the system enables users 
 * Job Details Page
 * Save/Favorite Jobs
 
-🤖 AI Recommendation Engine
+### 🤖 AI Recommendation Engine
 
 * Resume Parsing
 * Skill Extraction
@@ -30,7 +31,7 @@ Designed with scalability and user experience in mind, the system enables users 
 * Personalized Job Recommendations
 * Similar Job Discovery
 
-🎨 Modern User Experience
+### 🎨 Modern User Experience
 
 * Responsive Bootstrap UI
 * Mobile-Friendly Design
@@ -38,20 +39,23 @@ Designed with scalability and user experience in mind, the system enables users 
 * Clean Dashboard
 * Professional Landing Page
 
+---
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
 | Category             | Technologies                         |
 | -------------------- | ------------------------------------ |
-| Frontend             | HTML5, CSS3, Bootstrap 5, JavaScript |
-| Backend              | Python, Django                       |
-| Database             | SQLite                               |
-| Machine Learning     | Scikit-learn, Pandas, NumPy          |
-| Tools                | Git, GitHub                          |
+| **Frontend**         | HTML5, CSS3, Bootstrap 5, JavaScript |
+| **Backend**          | Python, Django                       |
+| **Database**         | SQLite                               |
+| **Machine Learning** | Scikit-learn, Pandas, NumPy          |
+| **Tools**            | Git, GitHub                          |
 
+---
 
-📂 Project Structure
+## 📂 Project Structure
 
+```text
 AI_Job_Portal/
 │
 ├── jobportal/              # Django project configuration
@@ -64,12 +68,13 @@ AI_Job_Portal/
 ├── db.sqlite3
 ├── manage.py
 └── requirements.txt
+```
 
+---
 
+## ⚡ Installation
 
-⚡ Installation
-
-
+```bash
 git clone https://github.com/your-username/AI_Job_Portal.git
 
 cd AI_Job_Portal
@@ -79,15 +84,17 @@ pip install -r requirements.txt
 python manage.py migrate
 
 python manage.py runserver
+```
 
 Open your browser and visit:
 
-
+```text
 http://127.0.0.1:8000/
+```
 
+---
 
-
-📈 Highlights
+## 📈 Highlights
 
 * AI-powered personalized job recommendations
 * Clean and responsive interface
@@ -97,8 +104,9 @@ http://127.0.0.1:8000/
 * Modular application structure
 * Easy to customize and extend
 
+---
 
-🎯 Future Enhancements
+## 🎯 Future Enhancements
 
 * Recruiter Dashboard
 * Company Portal
@@ -113,8 +121,9 @@ http://127.0.0.1:8000/
 * PostgreSQL Deployment
 * Docker & Cloud Deployment
 
+---
 
-📸 Screenshots
+## 📸 Screenshots
 
 Add screenshots of the following pages:
 
@@ -126,18 +135,20 @@ Add screenshots of the following pages:
 * Resume Upload
 * AI Recommendations
 
+---
 
-
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions, feature requests, and suggestions are welcome. Feel free to fork the repository, create a new branch, and submit a pull request.
 
+---
 
-⭐ Support
+## ⭐ Support
 
 If you found this project helpful, consider giving it a ⭐ on GitHub.
 
+---
 
-👨‍💻 Developer
+## 👨‍💻 Developer
 
-Developed by Arsh Singh as a Full Stack Django project integrating modern web development with Artificial Intelligence to simplify the job search process.
+Developed by **Arsh Singh** as a Full Stack Django project integrating modern web development with Artificial Intelligence to simplify the job search process.
