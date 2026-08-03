@@ -128,6 +128,18 @@ http://127.0.0.1:8000/
 Add screenshots of the following pages:
 
 * Home Page
+* ## 🏠 Home Page
+
+![Home 1](screenshots/home1.png)
+
+![Home 2](screenshots/home2.png)
+
+![Home 3](screenshots/home3.png)
+
+![Home 4](screenshots/home4.png)
+
+![Home 5](screenshots/home5.png)
+
 * Login & Registration
 * User Dashboard
 * Job Listings
