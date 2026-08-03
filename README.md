@@ -125,27 +125,58 @@ http://127.0.0.1:8000/
 
 ## 📸 Screenshots
 
-Add screenshots of the following pages:
+### 🏠 Home Page
 
-* Home Page
-* ## 🏠 Home Page
+<p align="center">
+  <img src="screenshots/home1.png" width="45%" alt="Home Page 1">
+  <img src="screenshots/home2.png" width="45%" alt="Home Page 2">
+</p>
 
-![Home 1](screenshots/home1.png)
+<p align="center">
+  <img src="screenshots/home3.png" width="45%" alt="Home Page 3">
+  <img src="screenshots/home4.png" width="45%" alt="Home Page 4">
+</p>
 
-![Home 2](screenshots/home2.png)
+<p align="center">
+  <img src="screenshots/home5.png" width="45%" alt="Home Page 5">
+</p>
 
-![Home 3](screenshots/home3.png)
+### 🔐 Login & Registration
 
-![Home 4](screenshots/home4.png)
+<p align="center">
+  <img src="screenshots/login.png" width="80%" alt="Login Page">
+</p>
 
-![Home 5](screenshots/home5.png)
+### 👤 User Dashboard
 
-* Login & Registration
-* User Dashboard
-* Job Listings
-* Job Details
-* Resume Upload
-* AI Recommendations
+<p align="center">
+  <img src="screenshots/dashboard.png" width="80%" alt="Dashboard">
+</p>
+
+### 💼 Job Listings
+
+<p align="center">
+  <img src="screenshots/jobs.png" width="80%" alt="Job Listings">
+</p>
+
+### 📄 Job Details
+
+<p align="center">
+  <img src="screenshots/job_details.png" width="80%" alt="Job Details">
+</p>
+
+### 📤 Resume Upload
+
+<p align="center">
+  <img src="screenshots/upload_resume.png" width="80%" alt="Resume Upload">
+</p>
+
+### 🤖 AI Recommendations
+
+<p align="center">
+  <img src="screenshots/recommendations.png" width="80%" alt="AI Recommendations">
+</p>
+
 
 ---
 
