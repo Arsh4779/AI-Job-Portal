@@ -165,11 +165,6 @@ http://127.0.0.1:8000/
   <img src="Screenshots/job_details.png" width="80%" alt="Job Details">
 </p>
 
-### 📤 Resume Upload
-
-<p align="center">
-  <img src="Screenshots/upload_resume.png" width="80%" alt="Resume Upload">
-</p>
 
 ### 🤖 AI Recommendations
 
