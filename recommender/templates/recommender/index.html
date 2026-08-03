@@ -1,0 +1,9 @@
+{% extends 'recommender/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-7"><div class="card shadow-lg"><div class="card-body p-5">
+  <h2 class="text-center mb-3">Your CV could not be processed</h2>
+  <p class="text-center text-muted">Upload a text-based PDF CV to restore your saved recommendations.</p>
+  <a href="{% url 'profile' %}" class="btn btn-primary w-100">Go to dashboard</a>
+</div></div></div></div>
+{% endblock %}

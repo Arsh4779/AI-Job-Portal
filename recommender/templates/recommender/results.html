@@ -1,0 +1,34 @@
+{% extends 'recommender/base.html' %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+  <div>
+    <h2 class="mb-1">Your job recommendations</h2>
+    {% if using_saved_cv %}
+      <p class="text-muted mb-0"><i class="bi bi-check-circle-fill text-success"></i> Based on your saved CV: <strong>{{ resume_name }}</strong></p>
+    {% else %}
+      <p class="text-muted mb-0"><i class="bi bi-clock-history text-primary"></i> Based on a temporary CV: <strong>{{ resume_name }}</strong></p>
+    {% endif %}
+  </div>
+  {% if not using_saved_cv %}<a href="{% url 'recommender:home' %}" class="btn btn-outline-primary">Use my saved CV</a>{% endif %}
+</div>
+
+<form method="get" class="card border-0 shadow-sm mb-4"><div class="card-body row g-3 align-items-end"><div class="col-md-4"><label class="form-label">Country</label><select class="form-select" name="country"><option value="">All countries</option>{% for item in countries %}<option value="{{ item }}" {% if country == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></div><div class="col-md-3"><label class="form-label">Work type</label><select class="form-select" name="work_type"><option value="">All work types</option>{% for item in work_types %}<option value="{{ item }}" {% if work_type == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></div><div class="col-md-3"><label class="form-label">Job title</label><input class="form-control" name="title" value="{{ title }}" placeholder="e.g. Data Analyst"></div><div class="col-md-2 d-grid"><button class="btn btn-primary" type="submit"><i class="bi bi-funnel me-1"></i> Filter</button></div></div></form>
+
+{% for job in jobs %}
+<div class="card shadow mb-4"><div class="card-body">
+  <div class="d-flex justify-content-between gap-3"><div><h3>{{ job.title }}</h3><h5 class="text-primary">{{ job.company }}</h5></div><span class="badge bg-success fs-6 align-self-start">{{ job.match }}% Match</span></div>
+  <hr><p><strong>Role:</strong> {{ job.role }}</p><p><strong>Location:</strong> {{ job.location }}, {{ job.country }}</p><p><strong>Salary:</strong> {{ job.salary }}</p><p><strong>Work Type:</strong> {{ job.work_type }}</p><p><strong>Portal:</strong> {{ job.portal }}</p>
+  <h5>Description</h5><p>{{ job.description }}</p><h5>Responsibilities</h5><p>{{ job.responsibility }}</p><h5>Skills Required</h5><p>{{ job.skills }}</p>
+</div></div>
+{% empty %}<div class="alert alert-warning">No jobs found.</div>{% endfor %}
+
+<section class="card border-0 shadow-sm mt-5"><div class="card-body p-4">
+  <h4>Try a different CV</h4>
+  <p class="text-muted">Use a new PDF to compare recommendations. This file is processed for this request only and is not saved to your profile.</p>
+  <form method="post" enctype="multipart/form-data" class="row g-3 align-items-end">
+    {% csrf_token %}<div class="col-md-8">{{ form.resume }}</div><div class="col-md-4"><button class="btn btn-primary w-100" type="submit">Try this CV</button></div>
+  </form>
+  {% for error in form.resume.errors %}<div class="text-danger small mt-2">{{ error }}</div>{% endfor %}
+</div></section>
+{% endblock %}
